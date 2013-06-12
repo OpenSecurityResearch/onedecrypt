@@ -1,0 +1,34 @@
+WebEx One-Click Registry Key Decryptor
+brad.antoniewicz@foundstone.com
+-------------------------------------------------
+
+The WebEx One-Click client stores user passwords 
+encrypted within the registry however the encryption
+is really not all that amazing. 
+
+It takes the values of these registry keys:
+
+    HKEY_CURRENT_USER\Software\WebEx\ProdTools\UserName
+    HKEY_CURRENT_USER\Software\WebEx\ProdTools\SiteName
+
+Combines and repeats them out to 32 bytes. For instance
+    UserName key = braanton
+    SiteName key = siteaa.webex.com/siteaa
+
+So the encryption key would be:
+
+    braantonsiteaa.webex.com/siteaab
+
+Next it takes uses the following IV to make things "secure":
+    123456789abcdef03456789abcdef012
+
+webex-onedecrypt.c is a PoC to decrypt the values stored in the 
+registry. Just manually set the regVal, regLength and key variables. 
+
+To compile:
+    gcc -o webex-onedecrypt -lssl webex-onedecrypt.c
+
+then make a metasploit harvaster module..
+
+Enjoy!
+
