@@ -28,7 +28,9 @@ registry. Just manually set the regVal, regLength and key variables.
 To compile:
     gcc -o webex-onedecrypt -lssl webex-onedecrypt.c
 
-then make a metasploit harvaster module..
+then make a metasploit harvester module..
 
 Enjoy!
+
+Tracked by PSIRT-0219916903 
 
